@@ -7,17 +7,20 @@ const Login = () => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const handleLogin = () => {
-    // Here you can implement your authentication logic.
-    // For simplicity, this example just checks if both username and password are not empty.
-    if (username !== '' && password !== '') {
-      // Successful login
-      setLoggedIn(true);
-      alert('Login successful!');
-    } else {
-      // Failed login
-      setLoggedIn(false);
-      alert('Please enter valid username and password');
+    const data={
+      "email":username,
+      "password":password
     }
+    axios.post("http://localhost:4080/user/login",data).then((res)=>{
+      if(res.statuscode==200){
+        console.log("ok");
+      }
+      else{
+        console.log("user not found");
+      }
+    }).catch((ers)=>{
+      console.log(ers);
+    })
   };
 
   const handleLogout = () => {
