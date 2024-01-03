@@ -1,0 +1,11 @@
+.card{
+    display: flex;
+    background-color:#FFFDD0;
+    border-radius: 18px;
+    position: relative;
+    margin-left: 20vw;
+
+}
+.card img {
+    font-size: xx-large;
+}

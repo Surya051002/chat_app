@@ -1,0 +1,8 @@
+.menu{
+    width: 20vw;
+    height: 82vh;
+    background-color: blanchedalmond;
+    position: absolute;
+    z-index: 0;
+    border-radius: 10px;
+}
