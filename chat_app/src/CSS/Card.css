@@ -1,10 +1,14 @@
 .card{
     display: flex;
-    background-color:#FFFDD0;
+    
     border-radius: 18px;
     position: relative;
-    margin-left: 20vw;
-
+    padding:10px;
+    align-items: center;
+    margin-top: 10px;
+}
+h3{
+    padding: 10px;
 }
 .card img {
     font-size: xx-large;

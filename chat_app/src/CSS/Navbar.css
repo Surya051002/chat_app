@@ -1,7 +1,16 @@
 .navbar{
-    width: 100vw;
+    display: flex;
+    width: 78.89vw;
     height: 18vh;
-    background-color: rgb(0, 255, 200);
+    background-color: rgb(10, 117, 124);
     position: relative;
     border-radius: 10px;
+    left: 20vw;
+    top: 0px;
+    justify-content: start;
+    align-items: center;
+}
+.profile{
+    padding: 20px;
+    width: 80px;
 }
