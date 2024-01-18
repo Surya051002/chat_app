@@ -1,74 +1,74 @@
 import React, { useState } from 'react';
+import axios from 'axios'; // Don't forget to import axios
 import "../CSS/Logincss.css"
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
+  const Navigate = useNavigate();
 
-  const handleLogin = () => {
-    // Here you can implement your authentication logic.
-    // For simplicity, this example just checks if both username and password are not empty.
-    if (username !== '' && password !== '') {
-      // Successful login
+  const handleLogin = async () => {
+    const data = {
+      "username": username,
+      "password": password
+    };
+    console.log("hii")
+    try {
+      const response = await axios.post("http://localhost:5000/user/login", data);
+      // Handle the response from the server, update the loggedIn state, etc.
       setLoggedIn(true);
-      alert('Login successful!');
-    } else {
-      // Failed login
-      setLoggedIn(false);
-      alert('Please enter valid username and password');
+    } catch (error) {
+      // Handle error (display error message, etc.)
+      console.error('Error logging in:', error);
+    }
+    if(loggedIn){
+      Navigate('/home')
     }
   };
 
   const handleLogout = () => {
-    // Implement logout logic here if needed
+    // Implement logout logic here
     setLoggedIn(false);
-    setUsername('');
-    setPassword('');
+  };
+
+  const handleRegister = () => {
+    Navigate('/register');
   };
 
   return (
     <div className='login_container'>
-      {!loggedIn ? (
         <form>
           <div>
-            
             <div className=""></div>
-            <input className='input'
+            <input
+              className='input'
               type="text"
               id="username"
-              value={username} placeholder='UserName'
+              value={username}
+              placeholder='UserName'
               onChange={(e) => setUsername(e.target.value)}
-              />
-              <hr/>
-          
+            />
+            <hr />
           </div>
           <div>
-            
-            <input className='input'
+            <input
+              className='input'
               type="password"
               id="password"
-              value={password} placeholder='Password'
+              value={password}
+              placeholder='Password'
               onChange={(e) => setPassword(e.target.value)}
             />
-            <hr/>
+            <hr />
           </div>
           <button type="button" onClick={handleLogin}>
             Login
           </button>
-          <div className='signup-text'><p>Doesn't have an Account? <a  href=''  className='register-text' onClick={console.log("clicked")}>Register</a></p></div>
+          <div className='signup-text'><p>Doesn't have an Account? <button onClick={handleRegister}>Register</button></p></div>
         </form>
-        
-      ) : (
-        <div>
-          <h2>Welcome, {username}!</h2>
-          <button type="button" onClick={handleLogout}>
-            Logout
-          </button>
-          
-        </div>
-        
-      )}
+      
     </div>
   );
 };
