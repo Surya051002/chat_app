@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'; // Don't forget to import axios
 import "../CSS/Logincss.css"
+import logo from '../assets/img.jpg'
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -11,21 +12,25 @@ const Login = () => {
 
   const handleLogin = async () => {
     const data = {
-      "username": username,
+      "userName": username,
       "password": password
     };
-    console.log("hii")
     try {
       const response = await axios.post("http://localhost:5000/user/login", data);
-      // Handle the response from the server, update the loggedIn state, etc.
-      setLoggedIn(true);
-    } catch (error) {
-      // Handle error (display error message, etc.)
-      console.error('Error logging in:', error);
+
+    if (response.data.success) {
+      // Login successful logic
+      console.log('Login successful:', response.data.user);
+      localStorage.setItem("user",response.data.user);
+      Navigate('/home');
+    } else {
+      // Login failed logic
+      console.log('Login failed:', response.data.message);
     }
-    if(loggedIn){
-      Navigate('/home')
-    }
+  } catch (error) {
+    // Handle error (display error message, etc.)
+    console.error('Error logging in:', error);
+  }
   };
 
   const handleLogout = () => {
@@ -38,6 +43,10 @@ const Login = () => {
   };
 
   return (
+    <div className='login'>
+      <div className='login-logo'>
+        <img src={logo} />
+      </div>
     <div className='login_container'>
         <form>
           <div>
@@ -50,7 +59,6 @@ const Login = () => {
               placeholder='UserName'
               onChange={(e) => setUsername(e.target.value)}
             />
-            <hr />
           </div>
           <div>
             <input
@@ -61,14 +69,14 @@ const Login = () => {
               placeholder='Password'
               onChange={(e) => setPassword(e.target.value)}
             />
-            <hr />
           </div>
-          <button type="button" onClick={handleLogin}>
+          <button type="button" className='login-button' onClick={handleLogin}>
             Login
           </button>
           <div className='signup-text'><p>Doesn't have an Account? <button onClick={handleRegister}>Register</button></p></div>
         </form>
       
+    </div>
     </div>
   );
 };
