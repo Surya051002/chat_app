@@ -9,36 +9,11 @@ const Registration = () => {
   const [fullName, setFullName] = useState('');
   const [registrationStatus, setRegistrationStatus] = useState('');
 
-  const verifyEmail = async (email) => {
-    try {
-      const response = await axios.post('https://api.zerobounce.net/v2/validate', {
-        email,
-        api_key: 'YOUR_ZEROBOUNCE_API_KEY',
-      });
-
-      const { status, sub_status } = response.data;
-
-      if (status === 'Valid') {
-        return true; // Email is valid
-      } else {
-        console.log(`Email verification failed. Status: ${status}, Sub-status: ${sub_status}`);
-        return false; // Email is invalid
-      }
-    } catch (error) {
-      console.error('Error during email verification:', error.message);
-      return false; // Email verification failed due to an error
-    }
-  };
-
+  
   const handleRegistration = async () => {
     try {
       // Check email validity before registration
-      const isEmailValid = await verifyEmail(email);
-
-      if (!isEmailValid) {
-        setRegistrationStatus('Email verification failed. Please provide a valid email address.');
-        return;
-      }
+    
 
       // Assuming your registration API endpoint is at http://localhost:5000/register
       const response = await axios.post('http://localhost:5000/user/register', {
@@ -49,14 +24,10 @@ const Registration = () => {
       });
 
       // Check the response from the server
-      if (response.data.success) {
-        setRegistrationStatus('Registration successful!');
-      } else {
-        setRegistrationStatus('Registration failed. Please try again.');
-      }
+     
     } catch (error) {
       console.error('Error during registration:', error);
-      setRegistrationStatus('Error during registration. Please try again.');
+      
     }
   };
 
@@ -107,7 +78,7 @@ const Registration = () => {
       <button onClick={handleRegistration} className="registration-button">
         Register
       </button>
-      <p className="registration-status">{registrationStatus}</p>
+      
     </div>
   );
 };
