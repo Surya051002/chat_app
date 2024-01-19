@@ -1,19 +1,21 @@
+
 .registration-container {
     width: 300px;
     margin: auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   }
   
   .registration-input {
     width: 100%;
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     box-sizing: border-box;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border: transparent;
+    border-bottom: 1px solid;
     outline: none; /* Remove default focus outline */
   }
   
@@ -27,11 +29,14 @@
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
+    margin-top: 10px;
     cursor: pointer;
+    margin-left: 35%;
   }
   
   .registration-button:hover {
-    background-color: #45a049;
+    background-color: black;
+    color: white;
   }
   
   .registration-status {
@@ -39,4 +44,3 @@
     text-align: center;
     color: #007bff;
   }
-  

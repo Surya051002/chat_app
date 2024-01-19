@@ -13,7 +13,7 @@ const Registration = () => {
     try {
       const response = await axios.post('https://api.zerobounce.net/v2/validate', {
         email,
-        api_key: 'bcc0bface4184a3e8264029fa4ed0a71',
+        api_key: 'YOUR_ZEROBOUNCE_API_KEY',
       });
 
       const { status, sub_status } = response.data;
@@ -61,6 +61,7 @@ const Registration = () => {
   };
 
   return (
+    
     <div className="registration-container">
       <h2>Registration</h2>
       <label>
@@ -112,6 +113,3 @@ const Registration = () => {
 };
 
 export default Registration;
-
-
-
