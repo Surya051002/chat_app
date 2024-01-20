@@ -1,3 +1,19 @@
+.reg-whole-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-weight: bold;
+}
+
+.reg-h2{
+    text-align: center;
+    color:#4caf50 ;
+    margin-bottom: 20px;
+}
+.reg-h2:hover{
+    color:black ;
+}
 
 .registration-container {
     width: 300px;
@@ -32,6 +48,7 @@
     margin-top: 10px;
     cursor: pointer;
     margin-left: 35%;
+    font-size: 15px;
   }
   
   .registration-button:hover {
