@@ -1,15 +1,22 @@
 .card{
     display: flex;
-    
-    border-radius: 18px;
-    position: relative;
-    padding:10px;
+    justify-content: start;
     align-items: center;
-    margin-top: 10px;
+    height: 70px;
 }
-h3{
-    padding: 10px;
+
+.card img{
+    
+    width: 15%;
+    height: 70%;
+    margin-left: 10px;
+    border-radius: 50%;
+    border: 1px solid black;    
 }
-.card img {
-    font-size: xx-large;
+.text{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    width: 100%;
+    margin-left: 10px;
 }

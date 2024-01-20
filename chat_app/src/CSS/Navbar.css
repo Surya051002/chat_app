@@ -1,5 +1,7 @@
 .navbar{
     display: flex;
+    padding: 0 30px;
+    max-width: 75vw;
     width: 78.89vw;
     height: 18vh;
     background-color: rgb(10, 117, 124);
@@ -9,8 +11,37 @@
     top: 0px;
     justify-content: start;
     align-items: center;
+    color: white;
 }
+
 .profile{
-    padding: 20px;
-    width: 80px;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 50%;
+    border: 1px solid black;
+
+    img{
+        width: 60px;
+    }
+}
+
+
+.header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-text{
+    margin: 10px;
+}
+.options{
+    display: flex;
+    flex-direction: row;
+}
+.option{
+    height: 20px;
+    width: 50px;
+    font-size: 25px;
+    margin: 10px;
 }

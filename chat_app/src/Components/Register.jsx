@@ -26,18 +26,18 @@ const Registration = () => {
       return;
     } 
 
-    if(isValidEmail(email) && username && password && fullName){
-      navigate('/otp',{state:{email}});
-    }
+    // if(isValidEmail(email) && username && password && fullName){
+    //   navigate('/otp',{state:{email}});
+    // }
 
     try {
       // Check email validity before registration
-      const isEmailValid = await verifyEmail(email);
+      // const isEmailValid = await verifyEmail(email);
 
-      if (!isEmailValid) {
-        setRegistrationStatus('Email verification failed. Please provide a valid email address.');
-        return;
-      }
+      // if (!isEmailValid) {
+      //   setRegistrationStatus('Email verification failed. Please provide a valid email address.');
+      //   return;
+      // }
 
       // Assuming your registration API endpoint is at http://localhost:5000/register
       const response = await axios.post('http://localhost:5000/user/register', {
@@ -48,14 +48,14 @@ const Registration = () => {
       });
 
       // Check the response from the server
-      if (response.data.success) {
-        setRegistrationStatus('Registration successful!');
-      } else {
-        setRegistrationStatus('Registration failed. Please try again.');
-      }
+      // if (response.data.success) {
+      //   setRegistrationStatus('Registration successful!');
+      // } else {
+      //   setRegistrationStatus('Registration failed. Please try again.');
+      // }
     } catch (error) {
       console.error('Error during registration:', error);
-      setRegistrationStatus('Error during registration. Please try again.');
+      // setRegistrationStatus('Error during registration. Please try again.');
     }
   };
 
