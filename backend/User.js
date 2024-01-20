@@ -34,49 +34,51 @@ route.post('/register', async (req, res) => {
 
     // Check if the username or email already exists
     const existingUser = await userSchema.findOne({ $or: [{ userName }, { email }] });
-
+    console.log(email)
     if (existingUser) {
       return res.status(400).json({ success: false, message: 'Username or email already exists' });
     }
-    let testAccount = await nodemailer.createTestAccount();
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.forwardemail.net',
-      port: 465,
-      secure: true,
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
       auth: {
-        // TODO: replace `user` and `pass` values from <https://forwardemail.net>
-        user: testAccount.user,
-        pass: testAccount.pass,
-      },
+        user: 'suryaprakashmbr@gmail.com',
+        pass: 'huni suee yxdg bmox'
+      }
     });
+
+    // async..await is not allowed in global scope, must use a wrapper
 
     // send mail with defined transport object
-    const info = await transporter.sendMail({
+    const msg = {
       from: 'suryaprakashmbr@gmail.com', // sender address
-      to: email, // list of receivers
-      subject: 'Hello ✔', // Subject line
-      text: 'Hello world?', // plain text body
-      html: '<b>Hello world?</b>', // html body
-    });
+      to: `${email}`, // list of receivers
+      subject: "Verify", // Subject line
+      text: "http://localhost:5000/verify"
+    };
+    try {
+      const info = await transporter.sendMail(msg);
+      console.log("Message sent: %s", info.messageId);
+    } catch (error) {
+      console.error('Error sending email:', error);
+      // Respond to the client with an error message
+      return res.status(500).json({ success: false, message: 'Error sending verification email' });
+    }
+// Create a new user
+const newUser = new userSchema({
+  userName,
+  password,
+  email,
+  fullName,
+});
 
-    console.log('Message sent:', info.messageId);
+// Save the user to the database
+await newUser.save();
 
-    // Create a new user
-    const newUser = new userSchema({
-      userName,
-      password,
-      email,
-      fullName,
-    });
-
-    // Save the user to the database
-    await newUser.save();
-
-    res.status(201).json({ success: true, message: 'Registration successful' });
+res.status(201).json({ success: true, message: 'Registration successful' });
   } catch (error) {
-    console.error('Error during registration:', error);
-    res.status(500).json({ success: false, message: 'Internal Server Error' });
-  }
+  console.error('Error during registration:', error);
+  res.status(500).json({ success: false, message: 'Internal Server Error' });
+}
 });
 
 module.exports = route;
