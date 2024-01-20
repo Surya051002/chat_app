@@ -29,6 +29,24 @@ route.post('/login', async (req,res)=>{
       });
 
 route.post('/register', async (req,res)=>{
+
+
+  function generateOTP(length) {
+    const characters = '0123456789';
+    let OTP = '';
+  
+    for (let i = 0; i < length; i++) {
+      const index = Math.floor(Math.random() * characters.length);
+      OTP += characters[index];
+    }
+  
+    return OTP;
+  }
+  
+  // Example: Generate a 6-digit OTP
+  const otp = generateOTP(6);
+  
+  
   try {
     const { userName, password, email, fullName } = req.body;
 
