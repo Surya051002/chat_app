@@ -46,11 +46,9 @@ a {
 }
 
 .otp-container .error-message {
-    text-align: center;
     margin-top: 5px; /* Adjust the margin-top as needed */
     font-size: 16px; /* Adjust the font size as needed */
     font-weight: bold;
-    margin-left: 18%;
   }
   
 .otp-container .mail {

@@ -23,6 +23,10 @@ const userSchema = new mongoose.Schema({
   },
   friends:{
     type: [{}]
+  },
+  verified:{
+    type:Boolean,
+    default:false,
   }
 });
 
