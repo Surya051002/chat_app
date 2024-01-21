@@ -32,5 +32,15 @@
     max-height: 70vh; /* Adjust the max-height based on your design */
     display: flex;
     flex-direction: column;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+  }
+
+  .names::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .names::-webkit-scrollbar-thumb {
+    background-color: transparent;
   }
   

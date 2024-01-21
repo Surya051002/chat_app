@@ -49,6 +49,19 @@ const Menu=()=>{
            <Card/>
            <Card/>
            <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
           </div>       
         </div>
     )
