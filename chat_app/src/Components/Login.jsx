@@ -21,7 +21,7 @@ const Login = () => {
     if (response.data.success) {
       // Login successful logic
       console.log('Login successful:', response.data.user);
-      localStorage.setItem("user",response.data.user);
+      localStorage.setItem("user",JSON.stringify(response.data.user));
       Navigate('/home');
     } else {
       // Login failed logic

@@ -1,7 +1,8 @@
 const express = require('express');
 const userSchema = require('./userSchema'); // Assuming userSchema is defined
 const nodemailer = require('nodemailer');
-
+const otpGenerator =require('otp-generator');
+const { CURSOR_FLAGS } = require('mongodb');
 const route = express.Router();
 
 route.post('/login', async (req, res) => {
@@ -29,6 +30,9 @@ route.post('/login', async (req, res) => {
 });
 
 route.post('/register', async (req, res) => {
+
+  const otp=otpGenerator.generate(6,{lowerCaseAlphabets:false,upperCaseAlphabets:false,specialChars:false});
+
   try {
     const { userName, password, email, fullName } = req.body;
 
@@ -52,8 +56,8 @@ route.post('/register', async (req, res) => {
     const msg = {
       from: 'suryaprakashmbr@gmail.com', // sender address
       to: `${email}`, // list of receivers
-      subject: "Verify", // Subject line
-      text: "http://localhost:5000/verify"
+      subject: "Email verification", // Subject line
+      text: `Your OTP for registration is : ${otp}`,
     };
     try {
       const info = await transporter.sendMail(msg);
@@ -69,6 +73,7 @@ const newUser = new userSchema({
   password,
   email,
   fullName,
+  otp
 });
 
 // Save the user to the database
@@ -80,5 +85,26 @@ res.status(201).json({ success: true, message: 'Registration successful' });
   res.status(500).json({ success: false, message: 'Internal Server Error' });
 }
 });
+
+
+route.post('/friends', async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await userSchema.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const friends = user.friends; // Assuming 'friends' is the array field in your schema
+
+    res.status(200).json({ friends });
+  } catch (error) {
+    console.error('Error fetching friends:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+
 
 module.exports = route;
