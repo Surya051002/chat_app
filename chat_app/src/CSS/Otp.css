@@ -1,0 +1,74 @@
+
+.otp-whole-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+  
+.otp-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    border: 1px solid #ccc;
+    width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+}
+  
+.otp-container h1 {
+    font-size: 30px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #4caf50;
+}
+  
+.otp-container input {
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    letter-spacing: 6px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 20px;
+    background-color: rgb(197, 227, 237);
+    box-sizing: border-box;
+}
+  
+a {
+    text-decoration: none;
+    margin-top: 5px;
+    font-size: 18px;
+    color: #2196f3;
+}
+
+.otp-container .error-message {
+    text-align: center;
+    margin-top: 5px; /* Adjust the margin-top as needed */
+    font-size: 16px; /* Adjust the font size as needed */
+    font-weight: bold;
+    margin-left: 18%;
+  }
+  
+.otp-container .mail {
+    font-weight: bold;
+    margin: 5px 0;
+    font-size: 18px;
+    color: black; /* Red color for error messages */
+}
+
+.otp-container p {
+    margin: 10px;
+    font-size: 18px;
+}
+
+.button{
+    margin-top: 8px;
+    margin-left: 28%;
+}
+
+
+  

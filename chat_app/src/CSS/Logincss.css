@@ -37,6 +37,7 @@
     
   }
   .login-button{
+    margin: 10px;
     margin-left: 50%;
   }
   
@@ -59,5 +60,7 @@
     border: none;
     color: #007bff;
     cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
   }
   

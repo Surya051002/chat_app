@@ -1,16 +1,35 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../CSS/Register.css'; // Import your CSS file
+import { useNavigate } from 'react-router-dom';
 
 const Registration = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [fullName, setFullName] = useState('');
-  const [registrationStatus, setRegistrationStatus] = useState('');
 
+  const navigate = useNavigate();
+
+  function isValidEmail(email) {
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   
+    return emailRegex.test(email);
+  }
+
   const handleRegistration = async () => {
+
+    const emailToValidate = email;
+    if (!isValidEmail(emailToValidate)) {
+      alert("please enter valid email address");
+      return;
+    } 
+
+    if(isValidEmail(email) && username && password && fullName){
+      navigate('/otp',{state:{email}});
+    }
+
     try {
       // Check email validity before registration
     
@@ -32,9 +51,9 @@ const Registration = () => {
   };
 
   return (
-    
-    <div className="registration-container">
-      <h2>Registration</h2>
+    <div className="reg-whole-container">
+      <div className="registration-container">
+      <h2 className='reg-h2'>Registration</h2>
       <label>
         Username:
         <input
@@ -78,8 +97,9 @@ const Registration = () => {
       <button onClick={handleRegistration} className="registration-button">
         Register
       </button>
-      
     </div>
+    </div>
+    
   );
 };
 
