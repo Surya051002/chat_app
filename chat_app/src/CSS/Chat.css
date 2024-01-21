@@ -1,0 +1,88 @@
+.home {
+    background-color: rgb(188, 223, 229);
+    display: flex;
+    flex-direction: column;
+    height: 86.5vh;
+  }
+
+  .home_input {
+    width: 60vw;
+    height: 6vh;
+    margin-left: 25vw;
+    margin-bottom: 35px;
+    position: absolute;
+    bottom: 0;
+    border-radius: 20px;
+    padding-left: 20px;
+    font-size: larger;
+  }
+  
+  .chat {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    
+  }
+  
+  .messages {
+    display: flex;
+    flex-direction: column-reverse; /* Reverse the order of messages */
+    padding: 10px;
+    overflow-y: scroll; /* Allow scrolling both up and down */
+    height: 85vh; /* Adjust the height based on your design */
+  
+    /* Hide scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+    margin-bottom: 180px;
+    margin-right: 40px;
+  }
+  
+  /* Webkit browsers (Chrome, Safari) */
+  .messages::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .messages::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+  
+  
+  .sent {
+    background-color: #DCF8C6;
+    margin-bottom: 5px;
+    padding: 8px;
+    border-radius: 8px;
+    align-self: flex-end;
+    max-width: 70%;
+  }
+
+  .receive {
+    background-color: #DCF8C6;
+    margin-bottom: 5px;
+    padding: 8px;
+    border-radius: 8px;
+    align-self: flex-start;
+    margin-left: 390px;
+    max-width: 70%;
+  }
+  
+  .sendicon,
+  .sendfile,
+  .cameraicon,
+  .micicon {
+    font-size: 20px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .micicon {
+    background-color: grey;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  

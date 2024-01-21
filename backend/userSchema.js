@@ -21,6 +21,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  friends:{
+    type: [{}]
+  },
+  verified:{
+    type:Boolean,
+    default:false,
+  }
 });
 
 const User = mongoose.model('userSchema', userSchema);

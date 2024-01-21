@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../CSS/Register.css'; // Import your CSS file
 import { useNavigate } from 'react-router-dom';
@@ -8,36 +8,20 @@ const Registration = () => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [fullName, setFullName] = useState('');
+  const [otp, setOtp] = useState('');
 
   const navigate = useNavigate();
 
-  function isValidEmail(email) {
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   
-    return emailRegex.test(email);
-  }
-
   const handleRegistration = async () => {
 
-    const emailToValidate = email;
-    if (!isValidEmail(emailToValidate)) {
-      alert("please enter valid email address");
-      return;
-    } 
+    const emailToValidate = email; 
 
-    if(isValidEmail(email) && username && password && fullName){
-      navigate('/otp',{state:{email}});
-    }
+ 
 
     try {
       // Check email validity before registration
-      const isEmailValid = await verifyEmail(email);
-
-      if (!isEmailValid) {
-        setRegistrationStatus('Email verification failed. Please provide a valid email address.');
-        return;
-      }
+    
 
       // Assuming your registration API endpoint is at http://localhost:5000/register
       const response = await axios.post('http://localhost:5000/user/register', {
@@ -48,16 +32,20 @@ const Registration = () => {
       });
 
       // Check the response from the server
-      if (response.data.success) {
-        setRegistrationStatus('Registration successful!');
-      } else {
-        setRegistrationStatus('Registration failed. Please try again.');
-      }
+      setOtp(response.data.message);
+      console.log(response.data.message);
+      
     } catch (error) {
       console.error('Error during registration:', error);
-      setRegistrationStatus('Error during registration. Please try again.');
+      
     }
   };
+
+  useEffect(() => {
+    if(username && password && fullName){
+      navigate('/otp',{state:{email,otp}});
+    }
+  },[otp]);
 
   return (
     <div className="reg-whole-container">
@@ -106,6 +94,7 @@ const Registration = () => {
       <button onClick={handleRegistration} className="registration-button">
         Register
       </button>
+      
     </div>
     </div>
     

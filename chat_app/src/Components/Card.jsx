@@ -4,7 +4,10 @@ const Card=()=>{
     return(
         <div className='card'>
             <img src={profile} />
-            <h3>Name</h3>
+            <div className='text'>
+                <h3>Name</h3>
+                <p>last message...!</p>
+            </div>
         </div>
     )
 }

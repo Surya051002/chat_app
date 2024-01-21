@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import '../CSS/Otp.css';
 import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 const Otp = () => {
+
+  const navigate = useNavigate();
+
   const [otp, setOtp] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -21,6 +26,10 @@ const Otp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(location.state?.otp);
+    if(location.state?.otp === otp){
+      navigate('/home');
+    }
     // Check if the OTP is exactly 6 digits
     if (otp.length === 6) {
       // Handle OTP submission logic here
