@@ -1,25 +1,36 @@
-.menu{
+.menu {
     width: 20vw;
-    height: 100vh;
+    height: 98.5vh;
     background-color: blanchedalmond;
     position: absolute;
-    z-index: 0;
-    border-radius: 10px;
-    top: 1px;
-    flex-direction: column;
     padding-top: 10px;
-    overflow-y: scroll;
-}
-.menu_input {
+  }
+  
+  .menu_input {
     position: relative;
     margin-left: 10px;
     width: 80%;
     height: 10px;
     border-radius: 10px;
     padding: 10px;
-}
-.searchicon{
+  }
+  
+  .searchicon {
     position: absolute;
     top: 20px;
-    left:83%;
-}
+    left: 83%;
+  }
+  
+  .search {
+    position: relative;
+  }
+  
+  .names {
+    min-height: 93vh;
+    z-index: 0;
+    overflow-y: scroll;
+    max-height: 70vh; /* Adjust the max-height based on your design */
+    display: flex;
+    flex-direction: column;
+  }
+  

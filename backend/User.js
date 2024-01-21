@@ -1,6 +1,7 @@
 const express = require('express');
 const userSchema = require('./userSchema'); // Assuming userSchema is defined
 const nodemailer = require('nodemailer');
+const otpGenerator = require('otp-generator');
 
 const route = express.Router();
 
@@ -27,6 +28,9 @@ route.post('/login', async (req, res) => {
 });
 
 route.post('/register', async (req, res) => {
+
+  const otp = otpGenerator.generate(6,{upperCaseAlphabets:false, lowerCaseAlphabets:false, specialChars:false});
+
   try {
     const { userName, password, email, fullName } = req.body;
 
@@ -50,8 +54,8 @@ route.post('/register', async (req, res) => {
     const msg = {
       from: 'suryaprakashmbr@gmail.com', // sender address
       to: `${email}`, // list of receivers
-      subject: "Verify", // Subject line
-      text: "http://localhost:5000/verify"
+      subject: "Email Verification", // Subject line
+      text: `Your OTP for Registration is : ${otp}`,
     };
     try {
       const info = await transporter.sendMail(msg);
@@ -72,7 +76,7 @@ const newUser = new userSchema({
 // Save the user to the database
 await newUser.save();
 
-res.status(201).json({ success: true, message: 'Registration successful' });
+res.status(201).json({ success: true, message: otp });
   } catch (error) {
   console.error('Error during registration:', error);
   res.status(500).json({ success: false, message: 'Internal Server Error' });

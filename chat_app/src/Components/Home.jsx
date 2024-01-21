@@ -5,8 +5,6 @@ import Menu from "./Menu";
 import Navbar from "./Navbar";
 import Chat from "./Chat";
 
-import "../CSS/Home.css";
-
 const Home = () => {
   const navigate = useNavigate();
 

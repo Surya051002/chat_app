@@ -25,15 +25,31 @@ const Menu=()=>{
 
     return(
         <div className="menu">
+          <div className="search">
             <input className='menu_input' placeholder='Search'/>
-            <div className='searchicon'>
+          </div>
+          <div className='searchicon'>
             <IoIosSearch />
-            </div>
-            <Card/>
+          </div>
+          <div className="names">
            <Card/>
            <Card/>
-           <Card/><Card/>
-           <Card/><Card/><Card/><Card/><Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+          </div>       
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../CSS/Register.css'; // Import your CSS file
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,7 @@ const Registration = () => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [fullName, setFullName] = useState('');
+  const [otp, setOtp] = useState('');
 
   const navigate = useNavigate();
 
@@ -16,9 +17,7 @@ const Registration = () => {
 
     const emailToValidate = email; 
 
-    if(username && password && fullName){
-      navigate('/otp',{state:{email}});
-    }
+ 
 
     try {
       // Check email validity before registration
@@ -33,12 +32,20 @@ const Registration = () => {
       });
 
       // Check the response from the server
-     
+      setOtp(response.data.message);
+      console.log(response.data.message);
+      
     } catch (error) {
       console.error('Error during registration:', error);
       
     }
   };
+
+  useEffect(() => {
+    if(username && password && fullName){
+      navigate('/otp',{state:{email,otp}});
+    }
+  },[otp]);
 
   return (
     <div className="reg-whole-container">
