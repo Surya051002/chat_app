@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios'; // Import axios
 
 import Menu from "./Menu";
 import Navbar from "./Navbar";
@@ -15,6 +16,8 @@ const Home = () => {
   //     navigate("/");
   //   }
   // }, [navigate]);
+
+  
 
   return (
     <div className="home">

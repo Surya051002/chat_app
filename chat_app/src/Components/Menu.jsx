@@ -1,70 +1,41 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import '../CSS/Menu.css';
 import Card from './Card';
-import { IoIosSearch } from "react-icons/io";
 import axios from 'axios';
+import { IoIosSearch } from 'react-icons/io';
+import { MdCleaningServices } from 'react-icons/md';
 
-const Menu=()=>{
+const Menu = () => {
+  const [userFriends, setFriends] = useState([]);
 
-    useEffect(() => {
-        const fetchFriends = async () => {
-          try {
-            const response = await axios.post('http://localhost:5000/friends', {
-              email: localStorage.getItem('user'),
-            });
-            const data = response.data;
-    
-            setFriendsList(data.friends);
-          } catch (error) {
-            console.error('Error fetching friends:', error);
-          }
-        };
-    
-        fetchFriends();
-      }, []);
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user.email);
 
-    return(
-        <div className="menu">
-          <div className="search">
-            <input className='menu_input' placeholder='Search'/>
-          </div>
-          <div className='searchicon'>
-            <IoIosSearch />
-          </div>
-          <div className="names">
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-          </div>       
-        </div>
-    )
-}
+    axios
+      .post('http://localhost:5000/user/friends', { email: user?.email })
+      .then((response) => {
+        // Handle successful response
+        setFriends(response.data.friends);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        // Handle error
+        console.error('Error fetching friends:', error);
+      });
+  }, []);
+
+  return (
+    <div className="menu">
+      <input className="menu_input" placeholder="Search" />
+      <div className="searchicon">
+        <IoIosSearch />
+      </div>
+      {userFriends?.map((friend) => (
+        <Card key={friend} userId={friend} />
+      ))}
+    </div>
+  );
+};
 
 export default Menu;

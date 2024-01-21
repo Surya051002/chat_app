@@ -31,28 +31,6 @@ route.post('/register', async (req, res) => {
 
   const otp = otpGenerator.generate(6,{upperCaseAlphabets:false, lowerCaseAlphabets:false, specialChars:false});
 
-<<<<<<< HEAD
-route.post('/register', async (req,res)=>{
-
-
-  function generateOTP(length) {
-    const characters = '0123456789';
-    let OTP = '';
-  
-    for (let i = 0; i < length; i++) {
-      const index = Math.floor(Math.random() * characters.length);
-      OTP += characters[index];
-    }
-  
-    return OTP;
-  }
-  
-  // Example: Generate a 6-digit OTP
-  const otp = generateOTP(6);
-  
-  
-=======
->>>>>>> c8a5234b5b1d1b55843041c35eb6c4f9297727ee
   try {
     const { userName, password, email, fullName } = req.body;
 
@@ -105,4 +83,22 @@ res.status(201).json({ success: true, message: otp });
 }
 });
 
+
+route.post('/friends', async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await userSchema.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const friends = user.friends; // Assuming 'friends' is the array field in your schema
+
+    res.status(200).json({ friends });
+  } catch (error) {
+    console.error('Error fetching friends:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
 module.exports = route;

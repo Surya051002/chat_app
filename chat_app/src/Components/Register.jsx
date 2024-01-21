@@ -13,6 +13,9 @@ const Registration = () => {
   const navigate = useNavigate();
 
   
+   
+  
+
   const handleRegistration = async () => {
 
     const emailToValidate = email; 
@@ -94,11 +97,10 @@ const Registration = () => {
       <button onClick={handleRegistration} className="registration-button">
         Register
       </button>
-      
     </div>
     </div>
     
   );
-};
+  }
 
 export default Registration;
